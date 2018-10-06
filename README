@@ -1,0 +1,29 @@
+KapitanLetters
+
+Program for creating wordlists for bruteforce attacks. From a single word you can create a mix of its own with capital letters and even change certain vocals to numbers.
+
+Usage: python Kapitan.py -w word_to_modify
+
+-h --help - help options
+
+-w --word - write here the word to modify
+
+-n --notshow - do not show the words in command line
+
+-s --save - specify a path/name to save the output in a file
+
+-a - change all a for 4
+
+-e - change all e for 5
+
+-i - change all i for 1
+
+-o - change all o for 0
+
+Examples:
+
+python Kapitan.py -w test -n -s pass.txt
+
+python Kapitan.py --word test -e
+
+python Kapitan.py -h
