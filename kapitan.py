@@ -95,14 +95,15 @@ def main():
       print 'Error! Please, instert only lower-case letters.'
       sys.exit(0) 
   
+aux_vec_init = []
+for i in range(0,lon):
+  aux_vec_init.append(0)
+  
   #We now go for each line
   for x in range(0, lines):
     #Take the corresponding binary number
     num_bin = bin(x)
-    #Initialize the auxiliar vector to zeros
-    aux_vec = []
-    for i in range(0,lon):
-      aux_vec.append(0)
+    aux_vec = aux_vec_init
     for y in range(2,len(num_bin)):
       #Put the number in a clear vector
       aux_vec[y-2] = int(num_bin[len(num_bin)-y+1]) * (-32)
