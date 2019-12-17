@@ -26,7 +26,7 @@ def usage():
   print "python Kapitan.py --word test -e"
   print "python Kapitan.py -h"
   sys.exit(0)
-  
+
 def main():
   global word_w
   global show
@@ -45,15 +45,15 @@ def main():
   mayus_o = False
 
   if not len(sys.argv[1:]):
-    usage()  
-  
+    usage()
+
   # read the commandline options
   try:
     opts, args = getopt.getopt(sys.argv[1:],'hw:ns:aeio',['help','word=','notshow','save','a','e','i','o'])
   except getopt.GetoptError as err:
     print str(err)
-    usage()  
-  
+    usage()
+
   for o,a in opts:
     if o in ('-h','--help'):
       usage()
@@ -78,13 +78,13 @@ def main():
       mayus_o = True
     else:
       usage()
-  
+
   word_ch = str(word_w)
-  
+
   #Calculate the sizes
   lon = len(word_ch)
-  lines = 2**lon  
-  
+  lines = 2**lon
+
   #Vector for the ASCII numbers of the word
   word_as = []
   for i in range(0,lon):
@@ -93,21 +93,20 @@ def main():
       word_as.append(ord(word_ch[i]))
     else:
       print 'Error! Please, instert only lower-case letters.'
-      sys.exit(0) 
-  
-aux_vec_init = []
-for i in range(0,lon):
-  aux_vec_init.append(0)
-  
+      sys.exit(0)
+
   #We now go for each line
   for x in range(0, lines):
     #Take the corresponding binary number
     num_bin = bin(x)
-    aux_vec = aux_vec_init
+    #Clean the auxiliar vector
+    aux_vec = []
+    for i in range(0,lon):
+      aux_vec.append(0)
     for y in range(2,len(num_bin)):
       #Put the number in a clear vector
       aux_vec[y-2] = int(num_bin[len(num_bin)-y+1]) * (-32)
-      word_charact = []
+    word_charact = []
     for k in range(0,len(aux_vec)):
       #Add the corresponding character in function of the corresponding number
       aux_vec[k] = aux_vec[k] + word_as[k]
@@ -125,11 +124,10 @@ for i in range(0,lon):
     #Print the wordlist
     if show == True:
       print word_to_save
-    #Save the wordlist in a file    
+    #Save the wordlist in a file
     if output == True:
       g.write(word_to_save)
-      g.write("\n")      
-  
+      g.write("\n")
   #Close the file (if opened)
   if output == True:
     g.close()
